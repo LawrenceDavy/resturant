@@ -5,8 +5,10 @@ from .models import Meals
 def meal_list(request):
     meal_list = Meals.objects.all()
 
-    context = {'meal_list' : meal_list}
+    # Connect variables for the views to the template
+    context = {'meal_list' : meal_list,}
 
+    # Render to html
     return render(request, 'Meals/list.html', context)
 
 # Displays details of meal

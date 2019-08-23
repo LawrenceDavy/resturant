@@ -1,1 +1,8 @@
+<!--Webpage lists the available dishes-->
+
 <h1>Meal List</h1>
+
+<!-- For loop to display list of meals on html page -->
+{% for meal in meal_list %}
+    <h2><a href="{% url 'meals:meal_detail' meal.slug %}">{{ meal }}</a></h2>
+{% endfor %}
