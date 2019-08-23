@@ -1,12 +1,17 @@
 from django.shortcuts import render
-from .models import Meals
+from .models import Meals, Category
 
-# Displays list of all meals
+# Displays list of all meals and categories
 def meal_list(request):
     meal_list = Meals.objects.all()
+    categories = Category.objects.all()
 
     # Connect variables for the views to the template
-    context = {'meal_list' : meal_list,}
+    context = {
+        'meal_list' : meal_list,
+        'categories' : categories,
+    }
+
 
     # Render to html
     return render(request, 'Meals/list.html', context)
