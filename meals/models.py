@@ -17,7 +17,7 @@ class Meals(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug and self.name:
             self.slug = slugify(self.name)
-            super(Meals, self).save(*args, **kwargs)
+        super(Meals, self).save(*args, **kwargs)
 
     # Fixes meals subscategory spelling error
     class Meta:
