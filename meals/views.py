@@ -11,6 +11,15 @@ def meal_list(request):
     # Render to html
     return render(request, 'Meals/list.html', context)
 
-# Displays details of meal
+
+
+
+# Displays details of a meal using slug url
 def meal_detail(request, slug):
-    pass
+    meal_detail = Meals.objects.get(slug=slug)
+
+    # Connect variables for the views to the template
+    context = {'meal_detail' : meal_detail}
+
+    # Render to html
+    return render(request, 'Meals/detail.html', context)
