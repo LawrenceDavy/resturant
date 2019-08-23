@@ -1,5 +1,6 @@
 from django.db import models
 
+# Structure for reservation model
 class Reservation(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
