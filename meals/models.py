@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 
+
+
 # Structure for meal information
 class Meals(models.Model):
     name = models.CharField(max_length=50)
@@ -22,6 +24,16 @@ class Meals(models.Model):
         verbose_name_plural = 'meals'
 
     # name of meal appears admin
+    def __str__(self):
+        return self.name
+
+
+
+
+# Structure for food category menu ie. Breakfast, Lunch, Dinner
+class Category(models.Model):
+    name = models.CharField(max_length=30)
+
     def __str__(self):
         return self.name
 
