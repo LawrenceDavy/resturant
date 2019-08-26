@@ -7,7 +7,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField() 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    # tags 
+    image = models.ImageField(upload_to='blog/', blank=True, null=True) 
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     created = models.DateTimeField(default=timezone.now)
 
