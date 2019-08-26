@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 # Structure for blog
 class Post(models.Model):
@@ -10,6 +11,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='blog/', blank=True, null=True) 
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     created = models.DateTimeField(default=timezone.now)
+    tags = TaggableManager(blank=True)
 
     def __str__(self):
         return self.title
