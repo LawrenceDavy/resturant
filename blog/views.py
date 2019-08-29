@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Post, Category
+from .models import Post, Category, Comment
 from taggit.models import Tag
+from .forms import CommentForm
 
 def post_list(request):
     post_list = Post.objects.all()
@@ -16,11 +17,21 @@ def post_detail(request, id):
     post_detail = Post.objects.get(id=id)
     categories = Category.objects.all()
     all_tags = Tag.objects.all()
+    comments = Comment.objects.filter(post=post_detail)
+    comment_form = CommentForm()
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.user = request.user
+            new_comment.save()
 
     context = {
         'post_detail' : post_detail,
         'categories': categories,
         'all_tags': all_tags,
+        'comments': comments,
     }
 
     return render(request, 'Post/post_detail.html', context)
