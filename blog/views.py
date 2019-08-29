@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Post, Category
+from taggit.models import Tag
 
 def post_list(request):
     post_list = Post.objects.all()
@@ -14,10 +15,12 @@ def post_list(request):
 def post_detail(request, id):
     post_detail = Post.objects.get(id=id)
     categories = Category.objects.all()
+    all_tags = Tag.objects.all()
 
     context = {
         'post_detail' : post_detail,
         'categories': categories,
+        'all_tags': all_tags,
     }
 
     return render(request, 'Post/post_detail.html', context)
